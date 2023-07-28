@@ -67,8 +67,6 @@ df['Y'] = df['Y'] - start_y
 df['W'] = df.apply(lambda row: min(row['W'], tlw - 1 - row['X']), axis=1)
 df['H'] = df.apply(lambda row: min(row['H'], tlh - 1 - row['Y']), axis=1)
 
-
-
 # Divide 'X' and 'W' columns by tlw
 df['X'] = df['X'] / tlw
 df['W'] = df['W'] / tlw
@@ -77,11 +75,8 @@ df['W'] = df['W'] / tlw
 df['Y'] = df['Y'] / tlh
 df['H'] = df['H'] / tlh
 
-
-
 # Modify the "File" column
 df['File'] = df.apply(lambda row: row['File'].split('.')[0] + '_0' + str(row['Y_tile']) + '_0' + str(row['X_tile']) + '.txt', axis=1)
-
 
 df.drop(df[(df['X'] > 0.99) | (df['Y'] > 0.99)].index, inplace=True)
 
